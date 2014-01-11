@@ -1,0 +1,29 @@
+#!/bin/bash
+
+FILENAME=`eval echo '$'{$#}`
+FILEROWS=`cat $FILENAME | wc -l`
+NUMBER=10
+OFFSET=1
+
+while getopts n:o: OPT
+do
+  case $OPT in
+    n) NUMBER=$OPTARG
+      ;;
+    o) OFFSET=$OPTARG
+      ;;
+  esac
+done
+
+HEADROWS=`expr $OFFSET - 1 + $NUMBER`
+
+
+TAILROWS=$NUMBER
+if test $HEADROWS -gt $FILEROWS
+then
+  TAILROWS=`expr $NUMBER - $HEADROWS + $FILEROWS`
+else
+  TAILROWS=$NUMBER
+fi
+
+head -n $HEADROWS $FILENAME | tail -n $TAILROWS
