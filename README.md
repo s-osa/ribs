@@ -7,7 +7,7 @@ It is alike `head` command.
 ## How to use
 
 ### Syntax
-`ribs [-o first_row] [-n number_of_rows] file`
+`ribs [-o offset] [-n number_of_rows] file`
 
 ### Example
 
